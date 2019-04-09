@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>ThreeBlueKey Method</title>
+		<style>
+			#inputbox1 {
+				border: 1px solid gray;
+				height: 16px;
+				width: 16px;
+				padding: 1px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="inputbox1">
+		<img src="sprites.png" style="position: absolute; clip: rect(0px, 16px, 16px, 0px)">
+		</div>
+		
+		<script>
+			toSheet = function (r, g, b, o) {
+				let x = (r*16)+(b*48)
+				let y = g*16
+				return('<img src="sprites.png" style="position: absolute; clip: rect(' + 
+						[y, x+16, y+16, x].join("px, ") + 'px); transform: translate('+(-x+o)+"px, "+(-y)+'px)">') // x = 16r+48b, y=16g
+			}
+			function parseKey (k) {
+				return('<img src="sprites.png" style="position: absolute; clip: ' + toSheet(k) + '">')
+			}
+			function keyList (k, i) {
+				let r = []
+				let y = 0
+				k.forEach(function (h) {
+					r = r.concat([toSheet(...h, 16*y)])
+					y += 1
+				})
+				document.getElementById("inputbox1").innerHTML = r.join("")
+				document.getElementById("inputbox1").style.width = (k.length * 16) + "px"
+				return(r.join(""))
+			}
+			console.log("here, i'll give you some help with this")
+			console.log("use keyList([[r, g, b], [r, g, b]...[r, g, b]])")
+			console.log("try to make ThreeBlueKey Method")
+		</script>
+	</body>
+</html>
