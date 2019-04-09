@@ -2,44 +2,47 @@
 	<head>
 		<title>ThreeBlueKey Method</title>
 		<style>
-			#inputbox1 {
+			#keybox1 {
 				border: 1px solid gray;
 				height: 16px;
 				width: 16px;
 				padding: 1px;
+				position: relative;
 			}
+			.key {
+				transition: 0.7s;
+				transition-timing-function: ease-out;
+			}
+			.key:hover {transform: scale(3, 3)}
 		</style>
 	</head>
 	
 	<body>
-		<div id="inputbox1">
-		<img src="sprites.png" style="position: absolute; clip: rect(0px, 16px, 16px, 0px)">
+		<div id="keybox1">
 		</div>
 		
 		<script>
-			toSheet = function (r, g, b, o) {
-				let x = (r*16)+(b*48)
-				let y = g*16
-				return('<img src="sprites.png" style="position: absolute; clip: rect(' + 
-						[y, x+16, y+16, x].join("px, ") + 'px); transform: translate('+(-x+o)+"px, "+(-y)+'px)">') // x = 16r+48b, y=16g
+			toImg = function (r, g, b, o) {
+				let x = (r*32)+(b*96)
+				let y = g*32
+				return('<img class="key" src="sprites.png" draggable="false" style="position: absolute; clip: rect(' + 
+						[y, x+16, y+16, x].join("px, ") + 'px); left: '+(-x+o+1)+"px; top: "+(y+1)+'px'+""+'">') // x = 16r+48b, y=16g
 			}
-			function parseKey (k) {
-				return('<img src="sprites.png" style="position: absolute; clip: ' + toSheet(k) + '">')
-			}
-			function keyList (k, i) {
+			function updateKeyBox (k) {
 				let r = []
 				let y = 0
 				k.forEach(function (h) {
-					r = r.concat([toSheet(...h, 16*y)])
+					r = r.concat([toImg(...h, 16*y)])
 					y += 1
 				})
-				document.getElementById("inputbox1").innerHTML = r.join("")
-				document.getElementById("inputbox1").style.width = (k.length * 16) + "px"
+				document.getElementById("keybox1").innerHTML = r.join("")
+				document.getElementById("keybox1").style.width = (k.length>10) ? ((k.length * 16) + "px") : ("160px")
 				return(r.join(""))
 			}
 			console.log("here, i'll give you some help with this")
-			console.log("use keyList([[r, g, b], [r, g, b]...[r, g, b]])")
+			console.log("use updateKeyBox([[r, g, b], [r, g, b]...[r, g, b]])")
 			console.log("try to make ThreeBlueKey Method")
+			updateKeyBox([[0, 0, 1], [0, 0, 1], [0, 0, 1]])
 		</script>
 	</body>
 </html>
