@@ -13,7 +13,7 @@
 				transition: 0.7s;
 				transition-timing-function: ease-out;
 			}
-			.key:hover {transform: scale(3, 3)}
+			.key:hover {transform: scale(2, 2)}
 		</style>
 	</head>
 	
@@ -26,7 +26,7 @@
 				let x = (r*32)+(b*96)
 				let y = g*32
 				return('<img class="key" src="sprites.png" draggable="false" style="position: absolute; clip: rect(' + 
-						[y, x+16, y+16, x].join("px, ") + 'px); left: '+(-x+o+1)+"px; top: "+(y+1)+'px'+""+'">') // x = 16r+48b, y=16g
+						[y, x+16, y+16, x].join("px, ") + 'px); left: '+(-x+o+1)+"px; top: "+(-y+1)+'px'+""+'; transform-origin: '+(x+8)+'px '+(y+8)+'px">') // x = 16r+48b, y=16g
 			}
 			function updateKeyBox (k) {
 				let r = []
@@ -42,7 +42,7 @@
 			console.log("here, i'll give you some help with this")
 			console.log("use updateKeyBox([[r, g, b], [r, g, b]...[r, g, b]])")
 			console.log("try to make ThreeBlueKey Method")
-			updateKeyBox([[0, 0, 1], [0, 0, 1], [0, 0, 1]])
+			updateKeyBox([[0, 0, 0]])
 		</script>
 	</body>
 </html>
