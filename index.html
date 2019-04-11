@@ -2,42 +2,61 @@
 	<head>
 		<title>ThreeBlueKey Method</title>
 		<style>
-			#keybox1 {
-				border: 1px solid gray;
-				height: 16px;
-				width: 16px;
-				padding: 1px;
+			.keybox {
+				border: 2px solid gray;
+				height: 24px;
+				width: 24px;
+				padding: 6px;
 				position: relative;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
 			}
 			.key {
 				transition: 0.7s;
 				transition-timing-function: ease-out;
-				transform: scale(0.25, 0.25)
+				transform-origin: 7px 12px;
+				width: 16px;
+				margin-right: 16px;
 			}
-			.key:hover {transform: scale(0.5, 0.5)}
+			.key:hover {transform: scale(2, 2)}
 		</style>
 	</head>
 	
 	<body>
-		<div id="keybox1">
+		<div id="keybox1" class="keybox">
 		</div>
-		
 		<script>
-			toImg = function (r, g, b, o) {
-				let x = (r*128)+(b*384)
-				let y = g*128
-				return('<img class="key" src="sprites.png" draggable="false" style="position: absolute; clip: rect(' + 
-						[y, x+64, y+64, x].join("px, ") + 'px); left: '+(-x+o-23)+"px; top: "+(-y-23)+'px'+""+'; transform-origin: '+(x+32)+'px '+(y+32)+'px">') // x = 16r+48b, y=16g
+			function svgKey(r, g, b, kNum) {
+			return(
+			'<svg width="14" height="24" xmlns="http://www.w3.org/2000/svg" id="key'+kNum+'" class="key" id="_id">\n\
+			<!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->\n\
+			<!-- I edited it a bit -->\n\
+			<defs>\n\
+			<filter id="km'+kNum+'">\n\
+				<feColorMatrix in="SourceGraphic"\n\
+					type="matrix"\n\
+					values="0 '+r+' 0 0 0\n\
+							0 '+g+' 0 0 0\n\
+							0 '+b+' 0 0 0\n\
+							-0.1 0 0 1 0" />\n\
+			</filter>\n\
+			</defs>\n\
+			<g filter="url(#km'+kNum+')">\n\
+			_f0_8_10_2_2\n_f0_22_6_0_4\n_0f_8_6_2_4\n_f0_4_14_4_0\n_0f_4_10_4_2\n_f0_2_2_4_6\n_0f_12_4_10_6\n_f0_4_2_10_8\n_f0_2_2_14_10\n_f0_2_2_16_8\n_f0_2_2_20_8\n_f0_2_2_18_10\n_f0_2_2_22_6\n\
+			</g>\n\
+			</svg>'.replace(/_(.)(.)_(\d\d?)_(\d\d?)_(\d\d?)_(\d\d?)/g, '<rect stroke="#$1$1$2$200" stroke-width="0" fill="#$1$1$2$200" height="$3" width="$4" y="$5" x="$6"/>'))
 			}
 			function updateKeyBox (k) {
 				let r = []
 				let y = 0
 				k.forEach(function (h) {
-					r = r.concat([toImg(...h, 16*y)])
+					r = r.concat([svgKey(...h, y)])
 					y += 1
 				})
 				document.getElementById("keybox1").innerHTML = r.join("")
-				document.getElementById("keybox1").style.width = (k.length>10) ? ((k.length * 16) + "px") : ("160px")
+				document.getElementById("keybox1").lastChild.style.marginRight = "0px"
+				document.getElementById("keybox1").style.width = (k.length * 32) - 16 + "px"
 				return(r.join(""))
 			}
 			console.log("here, i'll give you some help with this")
