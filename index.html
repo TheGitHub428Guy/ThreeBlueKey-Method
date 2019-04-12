@@ -32,8 +32,7 @@
 				let border = "hsl(0, 0%, "+Math.max((Math.max(r, g, b)*(-80)+40), 0)+"%)"
 				return('<svg width="14" height="24" class="key" id="key'+kNum+'">\n\
 				<polygon points="4,0 10,0 10,2 12,2 12,4 14,4 14,8 12,8 12,10 10,10 10,14 12,14 12,16 10,16 10,18 12,18 12,20 10,20 10,22 8,22 8,24 6,24 6,22 4,22 4,10 2,10 2,8 0,8 0,4 2,4 2,2 4,2" style="fill:'+border+';stroke:'+border+';stroke-width:0" />\n\
-				<polygon points="4,2 10,2 10,4 12,4 12,8 10,8 10,10 8,10 8,14 10,14 10,16 8,16 8,18 10,18 10,20 8,20 8,22 6,22 6,10 4,10 4,8 2,8 2,4 4,4" style="fill:rgb('+[(r*255), (g*255), (b*255)].join(", ")+');stroke:rgb('+[(r*255), (g*255), (b*255)].join(", ")+');stroke-width:0" />\n\
-				<rect style="fill:'+border+';stroke:'+border+';stroke-width:0" x="6" y="4" width="2" height="2" />\n\
+				<polygon points="4,2 10,2 10,4 12,4 12,8 10,8 10,10 8,10 8,14 10,14 10,16 8,16 8,18 10,18 10,20 8,20 8,22 6,22 6,10 4,10 4,8 2,8 2,6 8,6 8,4 6,4 6,6 2,6 2,4 4,4" style="fill:rgb('+[(r*255), (g*255), (b*255)].join(", ")+');stroke:rgb('+[(r*255), (g*255), (b*255)].join(", ")+');stroke-width:0" />\n\
 				</svg>')
 			}
 			function updateKeyBox (k) {
