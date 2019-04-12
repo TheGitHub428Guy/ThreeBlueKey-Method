@@ -18,6 +18,7 @@
 				transform-origin: 7px 12px;
 				width: 16px;
 				margin-right: 16px;
+				image-rendering: pixelated
 			}
 			.key:hover {transform: scale(2, 2)}
 		</style>
@@ -28,24 +29,12 @@
 		</div>
 		<script>
 			function svgKey(r, g, b, kNum) {
-			return(
-			'<svg width="14" height="24" xmlns="http://www.w3.org/2000/svg" id="key'+kNum+'" class="key" id="_id">\n\
-			<!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->\n\
-			<!-- I edited it a bit -->\n\
-			<defs>\n\
-			<filter id="km'+kNum+'">\n\
-				<feColorMatrix in="SourceGraphic"\n\
-					type="matrix"\n\
-					values="0 '+r+' 0 0 0\n\
-							0 '+g+' 0 0 0\n\
-							0 '+b+' 0 0 0\n\
-							-0.1 0 0 1 0" />\n\
-			</filter>\n\
-			</defs>\n\
-			<g filter="url(#km'+kNum+')">\n\
-			_f0_8_10_2_2\n_f0_22_6_0_4\n_0f_8_6_2_4\n_f0_4_14_4_0\n_0f_4_10_4_2\n_f0_2_2_4_6\n_0f_12_4_10_6\n_f0_4_2_10_8\n_f0_2_2_14_10\n_f0_2_2_16_8\n_f0_2_2_20_8\n_f0_2_2_18_10\n_f0_2_2_22_6\n\
-			</g>\n\
-			</svg>'.replace(/_(.)(.)_(\d\d?)_(\d\d?)_(\d\d?)_(\d\d?)/g, '<rect stroke="#$1$1$2$200" stroke-width="0" fill="#$1$1$2$200" height="$3" width="$4" y="$5" x="$6"/>'))
+				let border = "hsl(0, 0%, "+Math.max((Math.max(r, g, b)*(-80)+40), 0)+"%)"
+				return('<svg width="14" height="24" class="key" id="key'+kNum+'">\n\
+				<polygon points="4,0 10,0 10,2 12,2 12,4 14,4 14,8 12,8 12,10 10,10 10,14 12,14 12,16 10,16 10,18 12,18 12,20 10,20 10,22 8,22 8,24 6,24 6,22 4,22 4,10 2,10 2,8 0,8 0,4 2,4 2,2 4,2" style="fill:'+border+';stroke:'+border+';stroke-width:0" />\n\
+				<polygon points="4,2 10,2 10,4 12,4 12,8 10,8 10,10 8,10 8,14 10,14 10,16 8,16 8,18 10,18 10,20 8,20 8,22 6,22 6,10 4,10 4,8 2,8 2,4 4,4" style="fill:rgb('+[(r*255), (g*255), (b*255)].join(", ")+');stroke:rgb('+[(r*255), (g*255), (b*255)].join(", ")+');stroke-width:0" />\n\
+				<rect style="fill:'+border+';stroke:'+border+';stroke-width:0" x="6" y="4" width="2" height="2" />\n\
+				</svg>')
 			}
 			function updateKeyBox (k) {
 				let r = []
@@ -57,11 +46,10 @@
 				document.getElementById("keybox1").innerHTML = r.join("")
 				document.getElementById("keybox1").lastChild.style.marginRight = "0px"
 				document.getElementById("keybox1").style.width = (k.length * 32) - 16 + "px"
-				return(r.join(""))
 			}
-			console.log("here, i'll give you some help with this")
-			console.log("use updateKeyBox([[r, g, b], [r, g, b]...[r, g, b]])")
-			console.log("try to make ThreeBlueKey Method")
+			var level = 0;
+			var levelsUnlocked = 1;
+			console.log("have fun with console or whatever")
 			updateKeyBox([[0, 0, 0]])
 		</script>
 	</body>
